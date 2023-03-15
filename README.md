@@ -1,24 +1,44 @@
-# README
+# Kindergarten exchange
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is open source application used to help parents to communicate and organize
+when they want to switch places in kindergartens.
 
-Things you may want to cover:
+Repository url:
 
-* Ruby version
+https://github.com/trkin/kindergarten-exchange
 
-* System dependencies
+It is using Rails, Tailwind, Neo4g graph database.
+It requires:
 
-* Configuration
+* Ruby 3.2.0
+* node 18.15.0
+* PostgreSQL 14.7
 
-* Database creation
+# Development
 
-* Database initialization
+To run locally you should run yarn
 
-* How to run the test suite
+```
+git clone git@github.com:trkin/kindergarten-exchange.git
+cd kindergarten-exchange
+yarn
+bundle
+bin/setup
+bin/dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+and you should be able to open site on http://localhost:3000/
 
-* Deployment instructions
+# Database
 
-* ...
+To create database and add your user as postgresql superuser you can follow
+TODO: https://github.com/trkin/dev.trk.in.rs/issues/8
+
+# Test
+
+TODO: https://github.com/trkin/kindergarten-exchange/issues/3
+
+# Deployment
+
+TODO: https://github.com/trkin/kindergarten-exchange/issues/9
+
