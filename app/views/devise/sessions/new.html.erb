@@ -1,5 +1,18 @@
 <h2>Log in</h2>
 
+<% if Rails.env.development? %>
+  <small>
+    Only on development
+    <dl>
+      <dt>users:</dt>
+      <dd>
+        <% User.order(:created_at).limit(5).each do |user| %>
+          <%= link_to user.email, sign_in_development_path(user) %>
+        <% end %>
+      </dd>
+    </dl>
+  </small>
+<% end %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
