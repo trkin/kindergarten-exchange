@@ -29,6 +29,15 @@ bin/dev
 
 and you should be able to open site on http://localhost:3000/
 
+# Model
+
+Basic models are:
+* `User` email of registered user
+* `Location` name and location for kindergarten
+* `Group` age groups for each location
+* `Wish` is Group User relation, ie current location
+* `WishGroup` is Wish Group relation, ie target location
+
 # Database
 
 To create database and add your user as postgresql superuser you can follow
