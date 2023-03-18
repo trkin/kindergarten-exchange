@@ -12,7 +12,25 @@ It requires:
 
 * Ruby 3.2.0
 * node 18.15.0
+
+[Installation guide](https://dev.trk.in.rs/)
+
 * PostgreSQL 14.7
+
+```
+sudo apt update
+sudo apt install postgresql postgresql-contrib libpq-dev
+sudo service postgresql start
+psql --version
+```
+
+Change 'myuser' to 'your_name' if you get an error: `role 'your_name' does not exist`
+
+```
+sudo -u postgres psql
+create user myuser with encrypted password 'mypass';
+alter user myuser with superuser;
+```
 
 # Development
 
