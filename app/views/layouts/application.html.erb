@@ -7,20 +7,32 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="../../assets/stylesheets/output.css" rel="stylesheet">
   </head>
 
   <body>
     <p data-test="notice" class="notice"><%= notice %></p>
     <p data-test="alert" class="alert"><%= alert %></p>
-    <%= link_to "Root", root_path %>
-    <% if current_user.present? %>
-      <span data-test="current-user-email"><%= current_user.email %></span>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete, form_class: "d-inline" %>
-    <% else %>
-      <%= link_to "Login", new_user_session_path %>
-    <% end %>
 
     <%= yield %>
   </body>
+
+  <footer class="flex flex-col items-center text-black text-base font-medium text-center p-[5vw] selection:bg-blue-500 selection:text-white">
+      <div class="flex flex-row justify-center gap-4 mb-4">
+        <i class="fa fa-envelope text-black hover:text-blue-500 hover:cursor-pointer" style="font-size:3rem;"></i>
+        <i class="fa fa-facebook text-black hover:text-blue-500 hover:cursor-pointer" style="font-size:3rem;"></i>
+        <i class="fa fa-twitter text-black hover:text-blue-500 hover:cursor-pointer" style="font-size:3rem;"></i>
+        <i class="fa fa-github text-black hover:text-blue-500 hover:cursor-pointer" style="font-size:3rem;"></i>
+      </div>
+      <p class="text-xs">
+        Copyright © Kindergarten Exchange 2023
+      </p>
+    </footer>
 </html>

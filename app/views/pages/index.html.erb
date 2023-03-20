@@ -1,5 +1,187 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
-<div data-controller="hello">
-  hello controller should be replaces with "Hello World!"
-</div>
+<header class="selection:bg-blue-500 selection:text-white">
+    	<nav>
+			<div class="flex flex-row justify-between items-center text-white bg-gray-600 px-[1rem] py-[1rem] sm:px-[1.5rem] sm:py-[1.5rem]">
+				<%= link_to "Root", root_path %>
+				<ul class="fixed hidden md:block right-0 top-0 md:relative md:flex-row md:justify-between" id="navbar">
+					<div class="flex flex-col md:flex-row gap-4 md:gap-0 md:mt-0 px-[1rem] py-[1rem] sm:px-[1.5rem] sm:py-[1.5rem] md:p-0 min-h-[100vh] md:min-h-0 min-w-[40vw] md:min-w-0 bg-gray-600/[0.95] z-1 md:z-0 rounded-lg">
+						<li class="md:hidden text-left cursor-pointer" id="navbar__closeButton">
+							<span class="material-symbols-rounded hover:text-blue-400">
+								close
+							</span>
+						</li>
+						<hr class="md:hidden">
+						<li>
+							<a class="hover:bg-blue-400 hover:text-white p-2 md:p-3 rounded-md hover:underline cursor-pointer" href="#">About</a>
+						</li>
+						<hr class="md:hidden">
+						<li>
+							<a class="hover:bg-blue-400 hover:text-white p-2 md:p-3 rounded-md hover:underline cursor-pointer" href="#">FAQ</a>
+						</li>
+						<hr class="md:hidden">
+						<li>
+							<a class="hover:bg-blue-400 hover:text-white p-2 md:p-3 rounded-md hover:underline cursor-pointer" href="#">Send a request</a>
+						</li>
+						<hr class="md:hidden">
+						<li>
+							<a class="hover:bg-blue-400 hover:text-white p-2 md:p-3 rounded-md hover:underline cursor-pointer" href="#">Contact</a>
+						</li>
+						<hr class="md:hidden">
+            <li>
+              <% if current_user.present? %>
+                <span data-test="current-user-email"><%= current_user.email %></span>
+                <%= button_to "Sign out", destroy_user_session_path, method: :delete, form_class: "" %>
+              <% else %>
+                <%= link_to "Login", new_user_session_path %>
+              <% end %>                              
+						</li>
+						<hr class="md:hidden">
+					</div>
+				</ul>
+				<div class="md:hidden cursor-pointer" id="navbar__menuButton">
+					<span class="material-symbols-rounded">
+						menu
+					</span>
+				</div>
+			  </div>			
+		  </nav>
+  </header>
+	<main class="selection:bg-blue-500 selection:text-white">
+		<section class="min-h-[50vh] bgImage__hero flex justify-center items-center px-[20vw]">
+			<h3 class="p-0 m-0 text-white font-semibold text-2xl sm:text-4xl text-center">
+				Find a free place for your child in the kindergarten of your choosing!
+			</h3>
+		</section>
+    <section class="px-[20vw] py-8 flex flex-col gap-4 text-left align-center">
+      <h3 class="text-center md:text-left text-blue-400 text-2xl sm:text-4xl font-semibold rounded-md">
+        About us
+      </h3>
+      <hr class="border-2 border-blue-400 rounded-md">
+      <p class="text-base font-light tracking-wide">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at facilisis enim. Nam pretium, ante at aliquam mollis, 
+         mauris ex volutpat elit, vitae ornare urna felis a ex. Duis posuere blandit neque, et aliquam sapien. Mauris placerat 
+         accumsan leo, et posuere sem consequat in. Nam dictum vestibulum mauris sit amet gravida. Proin sagittis semper tincidunt. 
+         Duis nunc libero, iaculis lacinia urna quis, eleifend interdum risus. Duis est turpis, vulputate sit amet odio id, finibus lacinia justo. 
+      </p>
+      <p class="text-base font-light tracking-wide">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at facilisis enim. Nam pretium, ante at aliquam mollis, 
+         mauris ex volutpat elit, vitae ornare urna felis a ex. Duis posuere blandit neque, et aliquam sapien. Mauris placerat 
+         accumsan leo, et posuere sem consequat in. Nam dictum vestibulum mauris sit amet gravida. Proin sagittis semper tincidunt. 
+         Duis nunc libero, iaculis lacinia urna quis, eleifend interdum risus. Duis est turpis, vulputate sit amet odio id, finibus lacinia justo. 
+      </p>
+      <p class="text-base font-light tracking-wide">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at facilisis enim. Nam pretium, ante at aliquam mollis, 
+         mauris ex volutpat elit, vitae ornare urna felis a ex. Duis posuere blandit neque, et aliquam sapien. Mauris placerat 
+         accumsan leo, et posuere sem consequat in. Nam dictum vestibulum mauris sit amet gravida. Proin sagittis semper tincidunt. 
+         Duis nunc libero, iaculis lacinia urna quis, eleifend interdum risus. Duis est turpis, vulputate sit amet odio id, finibus lacinia justo. 
+      </p>
+      <hr class="border-2 border-blue-400 rounded-md">
+    </section>
+    <section class="px-[20vw] py-12 flex flex-col gap-4 text-left align-center text-white bg-gradient-to-r from-blue-400 to-blue-600">
+      <h3 class="text-center text-2xl sm:text-4xl font-semibold rounded-md">
+        FAQ
+      </h3>
+      <hr class="border-1 border-whiterounded-md m-0">
+      <div class="flex flex-row justify-between">
+        <p>First FAQ</p>
+        <div class="cursor-pointer FAQButton">
+          <span class="material-symbols-rounded">
+            arrow_drop_down_circle
+          </span>  
+        </div>       
+      </div>
+      <p class="hidden text-base font-normal tracking-wide FAQParagraph">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at facilisis enim. Nam pretium, ante at aliquam mollis, 
+         mauris ex volutpat elit, vitae ornare urna felis a ex. Duis posuere blandit neque, et aliquam sapien. Mauris placerat 
+         accumsan leo, et posuere sem consequat in. Nam dictum vestibulum mauris sit amet gravida. Proin sagittis semper tincidunt. 
+         Duis nunc libero, iaculis lacinia urna quis, eleifend interdum risus. Duis est turpis, vulputate sit amet odio id, finibus lacinia justo. 
+      </p>
+      <hr class="border-1 border-whiterounded-md m-0">
+      <div class="flex flex-row justify-between">
+        <p>Second FAQ</p>
+        <div class="cursor-pointer FAQButton">
+          <span class="material-symbols-rounded">
+            arrow_drop_down_circle
+          </span>  
+        </div>       
+      </div>
+      <p class="hidden text-base font-normal tracking-wide FAQParagraph">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at facilisis enim. Nam pretium, ante at aliquam mollis, 
+         mauris ex volutpat elit, vitae ornare urna felis a ex. Duis posuere blandit neque, et aliquam sapien. Mauris placerat 
+         accumsan leo, et posuere sem consequat in. Nam dictum vestibulum mauris sit amet gravida. Proin sagittis semper tincidunt. 
+         Duis nunc libero, iaculis lacinia urna quis, eleifend interdum risus. Duis est turpis, vulputate sit amet odio id, finibus lacinia justo. 
+      </p>
+      <hr class="border-1 border-whiterounded-md m-0">
+      <div class="flex flex-row justify-between">
+        <p>Third FAQ</p>
+        <div class="cursor-pointer FAQButton">
+          <span class="material-symbols-rounded">
+            arrow_drop_down_circle
+          </span>  
+        </div>       
+      </div>
+      <p class="hidden text-base font-normal tracking-wide FAQParagraph">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at facilisis enim. Nam pretium, ante at aliquam mollis, 
+         mauris ex volutpat elit, vitae ornare urna felis a ex. Duis posuere blandit neque, et aliquam sapien. Mauris placerat 
+         accumsan leo, et posuere sem consequat in. Nam dictum vestibulum mauris sit amet gravida. Proin sagittis semper tincidunt. 
+         Duis nunc libero, iaculis lacinia urna quis, eleifend interdum risus. Duis est turpis, vulputate sit amet odio id, finibus lacinia justo. 
+      </p>
+      <hr class="border-1 border-white rounded-md m-0">
+      <div class="flex flex-row justify-between">
+        <p>Fourth FAQ</p>
+        <div class="cursor-pointer FAQButton">
+          <span class="material-symbols-rounded">
+            arrow_drop_down_circle
+          </span>  
+        </div>    
+      </div>
+      <p class="hidden text-base font-normal tracking-wide FAQParagraph">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at facilisis enim. Nam pretium, ante at aliquam mollis, 
+         mauris ex volutpat elit, vitae ornare urna felis a ex. Duis posuere blandit neque, et aliquam sapien. Mauris placerat 
+         accumsan leo, et posuere sem consequat in. Nam dictum vestibulum mauris sit amet gravida. Proin sagittis semper tincidunt. 
+         Duis nunc libero, iaculis lacinia urna quis, eleifend interdum risus. Duis est turpis, vulputate sit amet odio id, finibus lacinia justo. 
+      </p>
+      <hr class="border-1 border-white rounded-md m-0">
+    </section>
+		<section class="flex flex-col items-center px-[5vw] py-8 md:px-[20vw] md:py-16 text-blue-400 bg-gray-600 text-xl md:text-left">
+			<h3 class="text-center md:text-left text-blue-400 text-2xl sm:text-4xl font-semibold rounded-md md:mb-4">
+				Fill up the form with required information
+			</h3>
+			<%= form_with(model: @select_form, url:"/selection") do |f| %>
+				<div class="my-8 flex flex-col md:flex-row md:justify-left items-center">
+					<div class="text-white mr-4">
+						<%= f.label :name, placeholder: "Name" , class: "text-base"%>
+					</div>
+					<div>
+						<%= f.text_field :name , :required => 'required', class: "bg-white text-blue-500 rounded-md p-4 max-w-[50vw] md:max-w-[30vw] text-sm"  %>
+					</div>				
+				</div>
+				<div class="my-8 flex flex-col md:flex-row md:justify-left items-center">
+					<div class="text-white mr-4">
+						<%= f.label :email , class: "text-base"%>
+					</div>
+					<div>
+						<%= f.email_field :email , :required => 'required' , class: "bg-white text-blue-500 rounded-md p-4 max-w-[50vw] md:max-w-[30vw] text-sm" %>
+					</div>				
+				</div>
+				<div class="my-8 flex flex-col md:flex-row md:justify-left items-center">
+					<div class="text-white mr-4">
+						<%= f.label :select_kindergarten , class: "text-base"%>
+					</div>
+					<div class="text-blue-500 bg-white rounded-md p-4 max-w-[50vw] md:max-w-[30vw] overflow-hidden text-sm">
+						<%= f.select "kindergarten_selection", options_for_select([ "Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Name of the kindergarten, Adress" ], "Option 1"), :required => 'required' %>
+					</div>				
+				</div>
+        <div class="flex flex-row justify-center md:justify-left">
+          <button class="text-white bg-blue-400 hover:text-blue-400 hover:bg-white rounded-md px-5 py-3">
+					  <%= f.submit :Send %>
+				  </button>
+        </div>
+      <% end %>
+		</section>
+    <section class="px-[20vw] py-12 flex flex-col gap-4 text-left align-center">
+      <h3 class="text-center md:text-left text-blue-400 text-2xl sm:text-4xl font-semibold rounded-md">
+        Contact us
+      </h3>
+      <hr class="border-1 border-blue-400 rounded-md">
+    </section>
+	</main>

@@ -11,6 +11,7 @@ It is using Rails, Tailwind, Neo4g graph database.
 It requires:
 
 * Ruby 3.2.0
+* Rails 7
 * node 18.15.0
 * PostgreSQL 14.7
 
@@ -28,6 +29,15 @@ bin/dev
 ```
 
 and you should be able to open site on http://localhost:3000/
+
+# Adding custom javascript to project
+
+Custom javascript files are linked through a following process:
+    * Create custom folder under app/javascript and place your custom .js files in it
+    * Go to config/importmap.rb and add the following: pin_all_from "app/javascript/custom", under: "custom"
+    * Go to app/javascript/application.js file and add the following: import "./custom/kindergarten"
+    * Run rails assets:precompile
+    * Start server
 
 # Database
 

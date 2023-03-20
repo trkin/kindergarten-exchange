@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+legend,
+fieldset,
+select,
+textarea,
+input,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow:hidden;
+}
+
+.bgImage__hero
+{
+    background: linear-gradient(rgba(96, 165, 250),rgba(129, 140, 248)),url("../images/heroImage.jpg");
+    background-blend-mode: darken;
+    background-position: center;
+}
