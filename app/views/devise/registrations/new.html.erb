@@ -3,7 +3,7 @@
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="bg-blue-400 text-white rounded-md p-8">
+    <div class="bg-blue-400 text-white rounded-md p-8 shadow-md">
       <div class="field">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-white text-blue-500 rounded-md p-4 max-w-[50vw] md:max-w-[30vw] text-sm" %>

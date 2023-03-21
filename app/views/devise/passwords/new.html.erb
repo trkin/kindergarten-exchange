@@ -1,7 +1,7 @@
 <div class="px-[20vw] py-8 flex flex-col items-center gap-4 selection:bg-blue-500 selection:text-white">
   <h2 class="text-blue-400 text-2xl sm:text-4xl font-semibold mb-8">Forgot your password?</h2>
 
-  <div class="bg-blue-400 text-white rounded-md p-8">
+  <div class="bg-blue-400 text-white rounded-md p-8 shadow-md">
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 

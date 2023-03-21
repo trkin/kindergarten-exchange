@@ -15,7 +15,7 @@
     </small>
   <% end %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="bg-blue-400 text-white rounded-md p-8">
+    <div class="bg-blue-400 text-white rounded-md p-8 shadow-md">
       <div class="field">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-white text-blue-500 rounded-md p-4 w-full text-sm" %>
