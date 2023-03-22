@@ -1,39 +1,41 @@
-<h2>Log in</h2>
+<div class="px-[20vw] py-8 flex flex-col items-center gap-4 selection:bg-blue-500 selection:text-white">
+  <h2 class="text-blue-400 text-2xl sm:text-4xl font-semibold mb-8">Log in</h2>
 
-<% if Rails.env.development? %>
-  <small>
-    Only on development
-    <dl>
-      <dt>users:</dt>
-      <dd>
-        <% User.order(:created_at).limit(5).each do |user| %>
-          <%= link_to user.email, sign_in_development_path(user) %>
-        <% end %>
-      </dd>
-    </dl>
-  </small>
-<% end %>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <% if Rails.env.development? %>
+    <small>
+      Only on development
+      <dl>
+        <dt>users:</dt>
+        <dd>
+          <% User.order(:created_at).limit(5).each do |user| %>
+            <%= link_to user.email, sign_in_development_path(user) %>
+          <% end %>
+        </dd>
+      </dl>
+    </small>
+  <% end %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="bg-blue-400 text-white rounded-md p-8 shadow-md">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-white text-blue-500 rounded-md p-4 w-full text-sm" %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <div class="my-8">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "bg-white text-blue-500 rounded-md p-4 w-full text-sm" %>
+      </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <% if devise_mapping.rememberable? %>
+        <div class="my-8">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="text-white bg-gray-600 hover:text-blue-400 hover:bg-white rounded-md px-5 py-3 cursor-pointer text-center">
+        <%= f.submit "Log in", class: "max-w-[50vw] md:max-w-[30vw]" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+</div>
 
 <%= render "devise/shared/links" %>
