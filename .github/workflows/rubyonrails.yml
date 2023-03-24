@@ -1,9 +1,6 @@
 name: "Ruby on Rails CI"
 on: pull_request
 
-env:
-  AUTH0_AUDIENCE: https://starter-rails-api.druwerd.com
-  AUTH0_DOMAIN: dev-wissl4s1enyqz56r.us.auth0.com
 
 jobs:
   test:
