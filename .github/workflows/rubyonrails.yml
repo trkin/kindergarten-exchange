@@ -38,9 +38,9 @@ jobs:
           node-version: 16.18.0
       - name: Install dependencies
         run: |
-          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
+        
           gem install bundler
-          bundle install --jobs 4 --retry 3
+          bundle install
           yarn install
       - name: Setup test database
         env:
