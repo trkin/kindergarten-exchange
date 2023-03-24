@@ -21,13 +21,13 @@ jobs:
         with:
           ruby-version: 2.6.6
 
-      - uses: Borales/actions-yarn@v2.3.0
+      
         with:
           cmd: install
 
       - name: Install Dependencies
         run: |
-          sudo apt install -yqq libpq-dev
+       
           gem install bundler
 
       - name: Install Gems
