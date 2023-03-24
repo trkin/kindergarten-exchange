@@ -19,6 +19,7 @@ jobs:
           gem install standard
           gem install bundler -v '~> 2.4'
           bundle update standard
+          bundle install
          
       - name: Standard Report
         run: bundle exec standard
