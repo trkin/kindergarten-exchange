@@ -19,8 +19,9 @@ jobs:
           gem install standard
           gem install bundler -v '~> 2.4'
          
+         
       - name: Standard Report
-        run: bin/bundle exec rails standard
+        run: bin/bundle exec standardrb
   stylelint:
     name: Stylelint
     runs-on: ubuntu-22.04
