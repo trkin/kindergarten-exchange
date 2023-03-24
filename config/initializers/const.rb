@@ -59,10 +59,10 @@ module Const
     end
     # for asset-url or img_tag in emails
     config.action_mailer.asset_host = if link[:port]
-                                        "http://#{link[:host]}:#{link[:port]}"
-                                      else
-                                        "https://#{link[:host]}"
-                                      end
+      "http://#{link[:host]}:#{link[:port]}"
+    else
+      "https://#{link[:host]}"
+    end
     config.active_job.queue_name_prefix = Const.common[:short_name]
   end
 end

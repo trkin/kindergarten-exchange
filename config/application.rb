@@ -35,6 +35,6 @@ module KindergartenExchange
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+    config.action_mailer.default_url_options = {host: "localhost", port: 3000}
   end
 end
