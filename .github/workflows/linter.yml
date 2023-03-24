@@ -21,7 +21,7 @@ jobs:
           bundle update standard
          
       - name: Standard Report
-        run: bundle exec standardrb
+        run: bundle exec standard
   stylelint:
     name: Stylelint
     runs-on: ubuntu-22.04
