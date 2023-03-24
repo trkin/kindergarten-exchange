@@ -224,10 +224,6 @@ GEM
     rubocop-performance (1.16.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
-    rubocop-rails (2.11.3)
-      activesupport (>= 4.2.0)
-      rack (>= 1.1)
-      rubocop (>= 1.7.0, < 2.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
     rubocop-rspec (2.19.0)
@@ -294,7 +290,6 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-performance
-  rubocop-rails
   rubocop-rake
   rubocop-rspec
   selenium-webdriver
