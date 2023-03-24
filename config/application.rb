@@ -29,16 +29,6 @@ module KindergartenExchange
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    config.action_mailer.smtp_settings = {
-      port: ENV.fetch('SMTP_PORT'),
-      address: ENV.fetch('SMTP_SERVER'),
-      user_name: ENV.fetch('SMTP_LOGIN'),
-      password: ENV.fetch('SMTP_PASSWORD'),
-      domain: ENV.fetch('SMTP_DOMAIN'),
-      authentication: :plain,
-      enable_starttls_auto: true
-    }
-    config.action_mailer.delivery_method = :smtp
 
     # Configuration for the application, engines, and railties goes here.
     #
