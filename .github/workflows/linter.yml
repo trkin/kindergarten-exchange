@@ -6,7 +6,7 @@ env:
   FORCE_COLOR: 1
 
 jobs:
-  rubocop:
+  standard:
     name: Standard
     runs-on: ubuntu-22.04
     steps:
@@ -17,6 +17,7 @@ jobs:
       - name: Setup Standard
         run: |
           gem install standard
+          gem install bundler -v '~> 2.4'
          
       - name: Standard Report
         run: bin/bundle exec rake standard
