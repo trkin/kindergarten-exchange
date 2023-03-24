@@ -1,10 +1,10 @@
-name: Rails
+name: Tests
 on: pull_request
 
 jobs:
   verify:
-    name: Build
-    runs-on: ubuntu-20.04
+    name: RSpec
+    runs-on: ubuntu-22.04
 
     services:
       postgres:
@@ -49,7 +49,7 @@ jobs:
           POSTGRES_DB: kindergarten_exchange_test
           
         run: |
-          cp config/database.yml config/database.yml
+          cp config/database.yml
           rake db:create db:migrate
       - name: Run tests
         env:
