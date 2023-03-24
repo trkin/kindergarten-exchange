@@ -2,9 +2,6 @@ name: Actions
 
 on: pull_request
 
-env:
-  FORCE_COLOR: 1
-
 jobs:
   standard:
     name: Standard
