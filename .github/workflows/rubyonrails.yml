@@ -1,46 +1,56 @@
-name: Ruby
-on: [push, pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    services:
-      db:
-        image: postgres:11@sha256:85d79cba2d4942dad7c99f84ec389a5b9cc84fb07a3dcd3aff0fb06948cdc03b
-        ports: ['5432:5432']
-        env:
-          POSTGRES_DB: test
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-      redis:
-        image: redis
-        ports: ['6379:6379']
-        options: --entrypoint redis-server
+env:
+  RUBY_VERSION: '3.0'
 
+  POSTGRES_DB: kindergarten_exchange
+
+name: Rails tests
+on: [pull_request]
+jobs:
+  rubocop-test:
+    name: Rubocop
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
         with:
-          ruby-version: 3.2
-      - name: Build and test with Rake
-        env:
-          RAILS_ENV: test
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-        run: |
-          sudo apt-get -yqq install libpq-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-      - name: Db create Migrate
-        env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
-          REDIS_URL: redis://localhost:6379/0
-          RAILS_ENV: test
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-        run: |
-          bundle exec rails db:create
-          bundle exec rails db:migrate
-          bundle exec rails db:test:prepare
-          bundle exec rails test
+          ruby-version: ${{ env.RUBY_VERSION }}
+      - name: Install Rubocop
+        run: gem install rubocop
+      - name: Check code
+        run: rubocop
+  rspec-test:
+    name: RSpec
+    needs: rubocop-test
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        ruby-version: ['3.0', '3.1']
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+        - 5432:5432
+        
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
+    # change this to (see https://github.com/ruby/setup-ruby#versioning):
+    # uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@168d6a54b412713c0ed60998a78093a270ca8d84
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Build
+      env:
+        RAILS_ENV: test
+      run: |
+        bundle install --jobs 4 --retry 3
+        bin/rails db:create
+        bin/rails db:migrate
+    - name: rubocop test
+      run: |
+        bundle exec rubocop
+    - name: rspec test
+      run: |
+        bundle exec rspec
