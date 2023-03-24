@@ -18,8 +18,8 @@ jobs:
         run: |
           gem install standard '1.25.3'
           gem install bundler -v '~> 2.4'
-        
-         
+          bundle update standard
+          bundle install
       - name: Standard Report
         run: bundle exec standardrb
   stylelint:
