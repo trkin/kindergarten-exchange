@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 # https://github.com/duleorlovic/rails_helpers_and_const/blob/main/config/initializers/const.rb
 
 # For Rails::Server::Options.new.parse!(ARGV)[:Port] to work in c and sidekiq
-require "rails/commands" # we need this to sidekiq
-require "rails/commands/server/server_command" # we need this for rails c or rails g migration
+require 'rails/commands' # we need this to sidekiq
+require 'rails/commands/server/server_command' # we need this for rails c or rails g migration
 # there is an exception: uninitialized constant Rails::Server (NameError)
 # I tried with Rack::Server.new.options[:Port] but it always returns 9292
 
@@ -24,8 +26,8 @@ module Const
                 '127.0.0.1'
               end,
         port: (Rails.env.development? ? Rails::Server::Options.new.parse!(ARGV)[:Port] : nil),
-        protocol: Rails.env.production? ? 'https' : 'http',
-      },
+        protocol: Rails.env.production? ? 'https' : 'http'
+      }
     )
   end
 
