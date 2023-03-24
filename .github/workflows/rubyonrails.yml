@@ -4,14 +4,13 @@ env:
   POSTGRES_DB: kindergarten_exchange
 
 name: Rails tests
-on: [push,pull_request]
+on: [pull_request]
 jobs:
   rubocop-test:
     name: Rubocop
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
-      - uses: 'node16'
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
@@ -23,6 +22,9 @@ jobs:
     name: RSpec
     needs: rubocop-test
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        ruby-version: ['3.0', '3.1']
     services:
       postgres:
         image: postgres:latest
@@ -30,26 +32,25 @@ jobs:
         - 5432:5432
         
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-ruby@v1
-      - uses: 'node16'
-        with:
-          ruby-version: ${{ env.RUBY_VERSION }}
-      - name: Install postgres client
-        run: sudo apt-get install libpq-dev
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundler install
-      - name: Create database
-        run: |
-          bundler exec rails db:create RAILS_ENV=test
-          bundler exec rails db:migrate RAILS_ENV=test
-      - name: Run tests
-        run: bundler exec rake
-      - name: Upload coverage results    
-        uses: actions/upload-artifact@master
-        if: always()
-        with:
-          name: coverage-report
-          path: coverage
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
+    # change this to (see https://github.com/ruby/setup-ruby#versioning):
+    # uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@168d6a54b412713c0ed60998a78093a270ca8d84
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Build
+      env:
+        RAILS_ENV: test
+      run: |
+        bundle install --jobs 4 --retry 3
+        bin/rails db:create
+        bin/rails db:migrate
+    - name: rubocop test
+      run: |
+        bundle exec rubocop
+    - name: rspec test
+      run: |
+        bundle exec rspec
