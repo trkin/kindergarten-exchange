@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get "pages/index"
   get "sign-in-development/:id", to: "pages#sign_in_development", as: :sign_in_development
   devise_for :users
