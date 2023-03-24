@@ -57,6 +57,7 @@ jobs:
       #   run: bin/brakeman -q -w2
       - name: Lint Ruby files
         run: bin/bundle exec rubocop --parallel
+        
 
 
 
