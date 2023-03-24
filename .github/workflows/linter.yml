@@ -14,12 +14,12 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: 3.1.x
-      - name: Setup Rubocop
+      - name: Setup Standard
         run: |
-          gem install --no-document rubocop -v '>= 1.0, < 2.0' # https://docs.rubocop.org/en/stable/installation/
-          [ -f .rubocop.yml ] || wget https://raw.githubusercontent.com/microverseinc/linters-config/master/ror/.rubocop.yml
-      - name: Rubocop Report
-        run: rubocop --color
+          gem install --no-document standard -v '~> 1.25', '>= 1.25.3' # https://www.rubydoc.info/gems/standard/1.25.3
+         
+      - name: Standard Report
+        run: bin/bundle exec rake standard
   stylelint:
     name: Stylelint
     runs-on: ubuntu-22.04
