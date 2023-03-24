@@ -16,7 +16,7 @@ jobs:
           ruby-version: 3.1.x
       - name: Setup Standard
         run: |
-          gem install standard  '~> 1.25', '>= 1.25.3' # https://www.rubydoc.info/gems/standard/1.25.3
+          gem install --no-document standard -v '~> 1.25', '>= 1.25.3' # https://www.rubydoc.info/gems/standard/1.25.3
          
       - name: Standard Report
         run: bin/bundle exec rake standard
