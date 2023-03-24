@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails"
@@ -20,6 +22,9 @@ Bundler.require(*Rails.groups)
 
 module KindergartenExchange
   class Application < Rails::Application
+    config.generators.after_generate do |files|
+      system("bundle exec rubocop -A " + files.shelljoin, exception: true)
+    end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
@@ -30,6 +35,6 @@ module KindergartenExchange
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+    config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   end
 end
