@@ -1,62 +1,63 @@
-name: "Ruby on Rails CI"
+name: Rails
 on: pull_request
 
-env:
-  AUTH0_AUDIENCE: https://starter-rails-api.druwerd.com
-  AUTH0_DOMAIN: dev-wissl4s1enyqz56r.us.auth0.com
-
 jobs:
-  test:
+  verify:
+    name: Build
     runs-on: ubuntu-latest
+
     services:
       postgres:
-        image: postgres:14-alpine
-        ports:
-          - "5432:5432"
+        image: postgres:11
         env:
-          POSTGRES_DB: starter_rails_api_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
+          POSTGRES_USER: rails_github_actions
+          POSTGRES_DB: rails_github_actions_test
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/starter_rails_api_test"
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      # Add or replace dependency steps here
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler: default
-          bundler-cache: true
-      # Add or replace database setup steps here
-      - name: Create database tables
-        run: bin/rails db:create
-      - name: Set up database schema
-        run: bin/rails db:schema:load
-      # Add or replace test runners here
-      - name: Run tests
-        run: bin/bundle exec rspec spec
+      # if you need redis
+      # redis:
+      #   image: redis
+      #   ports:
+      #   - 6379:6379
+      #   options: --entrypoint redis-server
 
-  lint:
-    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v1
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
         with:
-          bundler: default
-          bundler-cache: true
-      # Add or replace any other lints here
-      # - name: Security audit dependencies
-      #   run: bin/bundler-audit --update
-      # - name: Security audit application code
-      #   run: bin/brakeman -q -w2
-      - name: Lint Ruby files
-        run: bin/bundle exec rubocop --parallel
+          ruby-version: 3.2.x
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.13.0
+      - name: Install dependencies
+        run: |
+          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          yarn install
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          POSTGRES_DB: rails_github_actions_test
+          POSTGRES_USER: rails_github_actions
+          POSTGRES_PASSWORD: postgres
+        run: |
+          cp config/database.ci.yml config/database.yml
+          rake db:create db:migrate
+      - name: Run tests
+        env:
+          PGHOST: localhost
+          POSTGRES_DB: rails_github_actions_test
+          POSTGRES_USER: rails_github_actions
+          POSTGRES_PASSWORD: postgres
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          RAILS_ENV: test
+        run: rspec
