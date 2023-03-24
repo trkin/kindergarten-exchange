@@ -20,10 +20,25 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+if ['development', 'test'].include? ENV['RAILS_ENV']
+  Dotenv::Railtie.load
+end
+
 module KindergartenExchange
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+
+    config.action_mailer.smtp_settings = {
+      port: ENV.fetch('SMTP_PORT'),
+      address: ENV.fetch('SMTP_SERVER'),
+      user_name: ENV.fetch('SMTP_LOGIN'),
+      password: ENV.fetch('SMTP_PASSWORD'),
+      domain: ENV.fetch('SMTP_DOMAIN'),
+      authentication: :plain,
+      enable_starttls_auto: true
+    }
+    config.action_mailer.delivery_method = :smtp
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -32,6 +47,5 @@ module KindergartenExchange
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.action_mailer.default_url_options = {host: "localhost", port: 3000}
   end
 end
