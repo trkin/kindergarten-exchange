@@ -66,3 +66,5 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "mrsk", "~> 0.9.1"
