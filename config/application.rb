@@ -20,7 +20,6 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-
 module KindergartenExchange
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
