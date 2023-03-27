@@ -7,4 +7,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.create!(email: "admin@mail.com", password: "password", password_confirmation: "password", admin: true) if Rails.env.development?
+
+puts "\n== Seeding the database with fixtures =="
+system("bin/rails db:fixtures:load")
+puts "== Database successfuly seeded =="
