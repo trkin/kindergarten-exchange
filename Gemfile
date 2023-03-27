@@ -71,6 +71,5 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-gem "activeadmin", github: "activeadmin/activeadmin", branch: "master" # FIXME: revert to stable
-# Required for ActiveAdmin
+gem "activeadmin"
 gem "sass-rails"
