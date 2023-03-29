@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: Rails.application.credentials.mailer_sender
+  default from: 'one@mail.com'
   layout "mailer"
 end
