@@ -9,23 +9,23 @@ require "rails/commands/server/server_command" # we need this for rails c or rai
 module Const
   def self.common # rubocop:todo Metrics/MethodLength
     hash_or_error_if_key_does_not_exists(
-      name: 'MyApp',
+      name: "MyApp",
       # short_name is also use in config/sidekiq.yml and config/application.rb
-      short_name: 'myapp',
+      short_name: "myapp",
       # default_url is required for links in email body or in links in controller
       # when url host is not available (for example rails console)
       # look below how default_url is used
       default_url: {
         host: if Rails.env.production?
-                'www.myapp.com'
+                "www.myapp.com"
               elsif Rails.env.development?
-                'localhost'
+                "localhost"
               else
-                '127.0.0.1'
+                "127.0.0.1"
               end,
         port: (Rails.env.development? ? Rails::Server::Options.new.parse!(ARGV)[:Port] : nil),
-        protocol: Rails.env.production? ? 'https' : 'http',
-      },
+        protocol: Rails.env.production? ? "https" : "http"
+      }
     )
   end
 
@@ -57,10 +57,10 @@ module Const
     end
     # for asset-url or img_tag in emails
     config.action_mailer.asset_host = if link[:port]
-                                        "http://#{link[:host]}:#{link[:port]}"
-                                      else
-                                        "https://#{link[:host]}"
-                                      end
+      "http://#{link[:host]}:#{link[:port]}"
+    else
+      "https://#{link[:host]}"
+    end
     config.active_job.queue_name_prefix = Const.common[:short_name]
   end
 end

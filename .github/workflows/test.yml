@@ -1,0 +1,61 @@
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      # those envs are used to configure db and connect from Rails
+      PGHOST: localhost
+      PGDATABASE: rails_db_test
+      PGUSER: rails_db_user
+      PGPASSWORD: postgres
+
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_DB: rails_db_test
+          POSTGRES_USER: rails_db_user
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v3 # https://github.com/marketplace/actions/checkout
+    - name: Set up Ruby 3.2.1
+      uses: ruby/setup-ruby@v1 # https://github.com/ruby/setup-ruby
+      with:
+        # ruby-version: 3.2.1 # Not needed with a .ruby-version file
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Set up Node
+      uses: actions/setup-node@v3 # https://github.com/marketplace/actions/setup-node-js-environment
+      with:
+        node-version: 14
+    - name: Set up Chrome
+      run: |
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        sudo apt-get update && sudo apt-get install -y xvfb google-chrome-stable
+    - name: Install dependecies
+      run: |
+        sudo apt-get -yqq install libpq-dev
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        yarn install
+        # not sure if we need this for system tests
+        # bundle exec rake webdrivers:chromedriver:update # gem 'webdrivers'
+    - name: Build assets
+      run: |
+        yarn build
+        yarn build:css
+    - name: Standard style
+      run: |
+        bundle exec standardrb
+    - name: Setup test database
+      run: |
+        bin/rails db:create
+        bin/rails db:migrate # or bin/rails db:schema:load
+    - name: Run tests
+      run: |
+        bundle exec rake
