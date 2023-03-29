@@ -49,6 +49,9 @@ jobs:
       run: |
         yarn build
         yarn build:css
+    - name: Standard style
+      run: |
+        bundle exec standardrb
     - name: Setup test database
       run: |
         bin/rails db:create
