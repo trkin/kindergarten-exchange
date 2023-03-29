@@ -25,6 +25,8 @@ It requires:
 
 # Development
 
+## DO NOT USE STANDARD RAILS S
+
 To run locally you should run yarn
 
 ```
