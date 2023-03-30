@@ -32,7 +32,7 @@ describe "User signs up", type: :system do
   scenario "invalid when password confirmation doesn't match password" do
     fill_in "user_email", with: email
     fill_in "user_password", with: password
-    fill_in "user_password", with: 'dontmatch'
+    fill_in "user_password", with: "dontmatch"
     click_button "Sign up"
 
     expect(page).to have_no_text "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."

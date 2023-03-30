@@ -1,5 +1,5 @@
 options = Selenium::WebDriver::Chrome::Options.new
-options.add_argument('headless') if ENV['CI']
+options.add_argument("headless") if ENV["CI"]
 
 Capybara.register_driver(:chrome) do |app|
   Capybara::Selenium::Driver.new(
