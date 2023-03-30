@@ -1,4 +1,4 @@
-# Kindergarten exchange
+# Kindergarten exchange.
 
 This is open source application used to help parents to communicate and organize
 when they want to switch places in kindergartens.

@@ -11,10 +11,13 @@
   </head>
 
   <body>
-    <p data-test="notice" class="notice"><%= notice %></p>
-    <p data-test="alert" class="alert"><%= alert %></p>
+    <div class="position: fixed max-w-[100%] w-max flex-col top-5rem right-[50%] translate-x-[50%] items-center gap-5rem px-0 py-4 ">
+      <%= render "layouts/flash" %>
+    </div>
     <%= link_to "Root", root_path %>
+    <%= link_to 'Contact',  contact_path, class: '' %>
     <% if current_user.present? %>
+    
       <span data-test="current-user-email"><%= current_user.email %></span>
         <%= link_to "Admin Dashboard", admin_dashboard_path if current_user.is_admin? %>
       <%= button_to "Sign out", destroy_user_session_path, method: :delete, form_class: "d-inline" %>
