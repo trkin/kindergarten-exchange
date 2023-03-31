@@ -7,7 +7,7 @@
       <dt>users:</dt>
       <dd>
         <% User.order(:created_at).limit(5).each do |user| %>
-          <%= link_to user.email, sign_in_development_path(user) %>
+          <%= link_to user.phone, sign_in_development_path(user) %>
         <% end %>
       </dd>
     </dl>
@@ -15,8 +15,8 @@
 <% end %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :phone %><br />
+    <%= f.phone_field :phone, autofocus: true, autocomplete: "tel" %>
   </div>
 
   <div class="field">
