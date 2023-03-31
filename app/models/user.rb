@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :trackable
 
-  validates :phone,  presence: true
-  validates :phone, uniqueness: { case_sensitive: false }
-  validates :phone, format: { with: ::Constants::PHONE_REGEX }
+  validates :phone, presence: true
+  validates :phone, uniqueness: {case_sensitive: false}
+  validates :phone, format: {with: ::Constants::PHONE_REGEX}
   def is_admin?
     admin
   end
