@@ -16,7 +16,7 @@
     <%= link_to "Root", root_path %>
     <% if current_user.present? %>
       <span data-test="current-user-email"><%= current_user.email %></span>
-        <%= link_to "Admin Dashboard", admin_dashboard_path if current_user.is_admin? %>
+        <%= link_to "Admin Dashboard", admin_dashboard_path if current_user.admin? %>
       <%= button_to "Sign out", destroy_user_session_path, method: :delete, form_class: "d-inline" %>
     <% else %>
       <%= link_to "Login", new_user_session_path %>
