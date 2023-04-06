@@ -47,6 +47,8 @@ group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
 
   gem "standard", "~> 1.0", require: false
+
+  gem "rspec-rails", "~>6.0.0"
 end
 
 group :development do
