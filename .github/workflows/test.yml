@@ -33,10 +33,7 @@ jobs:
       uses: actions/setup-node@v3 # https://github.com/marketplace/actions/setup-node-js-environment
       with:
         node-version: 14
-    - name: Set up Chrome
-      run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        sudo apt-get update && sudo apt-get install -y xvfb google-chrome-stable
+    - uses: browser-actions/setup-chrome@v1 # https://github.com/marketplace/actions/setup-chrome
     - name: Install dependecies
       run: |
         sudo apt-get -yqq install libpq-dev

@@ -1,17 +1,13 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+DEFAULTS: &DEFAULTS
+  name: $LABEL
+  address: $LABEL address
+  latitude: 45.2384337
+  longitude: 19.84093123
 
-one:
-  name: MyString
-  address: MyString
-  lat: MyString
-  latitude: MyString
-  longitude: MyString
-  url_for_map: MyString
+location:
+  <<: *DEFAULTS
 
-two:
-  name: MyString
-  address: MyString
-  lat: MyString
-  latitude: MyString
-  longitude: MyString
-  url_for_map: MyString
+another_location:
+  <<: *DEFAULTS
+  latitude: 45.2404356
+  longitude: 19.8277656
