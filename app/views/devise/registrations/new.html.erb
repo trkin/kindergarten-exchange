@@ -1,29 +1,252 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="lg:h-full flex">
+  <div class="mt-10 lg:mt-auto container m-auto">
+    <div class="lg:flex flex-row justify-between ">
+      <div class="lg:w-1/2 p-5">
+        <h1 class="mb-4">
+          <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
+            <span>Razmeni mesto</span><br>
+            <span class="text-indigo-400">za vrtić online</span>
+          </div>
+        </h1>
+        <p class="sm:text-xl leading-7 font-normal">
+          Ova platforma omogućava roditeljima u Novom Sadu da se povežu i razmene mesta u vrtiću preko online platforme. To znači da roditelji koji traže mesto u vrtiću mogu pronaći druge roditelje koji su zainteresovani za razmenu mesta sa svojom decom.
+          Klikom na Prijavi se, prihvatate uslove korišćenja aplikacije.
+        </p>
+      </div>
+      <div class="m-auto">
+        <div class="w-full m-auto text-black sm:p-5 lg:py-3 xl:py-5">
+          <div class="flex flex-col items-center bg-white sm:rounded-lg p-4">
+            <div class="w-full lg:w-96 m-auto">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                  <div class="mb-4">
+                    <%= f.label :email, 'Uloguj se', class: 'text-sm leading-5 font-medium' %>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-full h-8 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none' %>
+                  </div>
+          
+                  <div class="mb-4 flex items-center">
+                    <hr class="border border-gray-300 w-full">
+                    <span class="mx-2 font-inter">ili</span>
+                    <hr class="border border-gray-300 w-full">
+                  </div>
+          
+                  <div class="mb-4">
+                    <%= f.password_field :password, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none', placeholder: 'Broj telefona' %>
+                  </div>
+          
+                  <div class="mb-6">
+                    <%= f.submit "Prijavi se", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= %>
+                  </div>
+          
+                  <hr class=" w-full border border-gray-300">
+                  <p class="pt-6 text-center text-xs leading-5 font-normal text-gray-500">Klikom na Registruj se, prihvatate <span class="text-gray-700">uslove korišćenja</span> aplikacije</p>
+              <% end %>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+<div class="lg:h-full flex">
+  <div class="mt-10 lg:mt-auto container m-auto">
+    <div class="lg:flex flex-row justify-between ">
+      <div class="lg:w-1/2 p-5">
+        <h1 class="mb-4">
+          <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
+            <span>Razmeni mesto</span><br>
+            <span class="text-indigo-400">za vrtić online</span>
+          </div>
+        </h1>
+        <p class="sm:text-xl leading-7 font-normal">
+          Ova platforma omogućava roditeljima u Novom Sadu da se povežu i razmene mesta u vrtiću preko online platforme. To znači da roditelji koji traže mesto u vrtiću mogu pronaći druge roditelje koji su zainteresovani za razmenu mesta sa svojom decom.
+          Klikom na Prijavi se, prihvatate uslove korišćenja aplikacije.
+        </p>
+      </div>
+      <div class="m-auto">
+        <div class="w-full m-auto text-black sm:p-5 lg:py-3 xl:py-5">
+          <div class="flex flex-col items-center bg-white sm:rounded-lg p-4">
+            <div class="w-full lg:w-96 m-auto">
+
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                  <div class="mb-4">
+                    <%= f.label :password, 'Verifikacija broja', class: 'text-sm leading-5 font-medium mb-4' %>
+                    <%= f.password_field :password, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none mt-1', placeholder: 'Verifikacioni kod' %>
+                  </div>
+  
+                  <div class="mb-6">
+                    <%= f.submit "Verifikuj nalog", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= %>
+                  </div>
+              <% end %>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+
+<div class="lg:h-full flex">
+  <div class="mt-10 lg:mt-auto container m-auto">
+    <div class="lg:flex flex-row justify-between ">
+      <div class="lg:w-1/2 p-5">
+        <h1 class="mb-4">
+          <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
+            <span>Dobrodošli!</span>
+          </div>
+        </h1>
+        <p class="sm:text-xl leading-7 font-normal mb-5">
+          Proces popunjavanja formi na websajtu sastoji se od dva dela, unosa vrtića i traženja vrtića.
+        </p>
+        <ul class="list-decimal ml-5">
+          <li class="text-indigo-400">
+            Unos vrtića u kojem nudite mesto.
+          </li>
+          <li >
+            Traženje vrtića u kojem tražite mesto.
+          </li>
+          <li >
+            Definisanje starosne grupe.
+          </li>
+        </ul> 
+      </div>
+      <div class="m-auto">
+        <div class="w-full m-auto text-black sm:p-5 lg:py-3 xl:py-5">
+          <div class="flex flex-col items-center bg-white sm:rounded-lg p-4">
+            <div class="w-full lg:w-96 m-auto">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                  <div class="mb-4">
+                    <%= f.label :password, 'Ponuda', class: 'text-sm leading-5 font-medium mb-4' %>
+                    <%= f.password_field :password, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none mt-1', placeholder: 'Unesite ime vrtića' %>
+                  </div>
+  
+                  <div class="mb-6">
+                    <%= f.submit "Dalje", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= %>
+                  </div>
+              <% end %>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+
+<div class="lg:h-full flex">
+  <div class="mt-10 lg:mt-auto container m-auto">
+    <div class="lg:flex flex-row justify-between ">
+      <div class="lg:w-1/2 p-5">
+        <h1 class="mb-4">
+          <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
+            <span>Drugi korak!</span>
+          </div>
+        </h1>
+        <p class="sm:text-xl leading-7 font-normal mb-5">
+          Proces popunjavanja formi na websajtu sastoji se od dva dela, unosa vrtića i traženja vrtića.
+        </p>
+        <ul class="list-decimal ml-5">
+          <li class="text-green-400">
+            Unos vrtića u kojem nudite mesto.
+          </li>
+          <li class="text-indigo-400">
+            Traženje vrtića u kojem tražite mesto.
+          </li>
+          <li >
+            Definisanje starosne grupe.
+          </li>
+        </ul> 
+      </div>
+      <div class="m-auto">
+        <div class="w-full m-auto text-black sm:p-5 lg:py-3 xl:py-5">
+          <div class="flex flex-col items-center bg-white sm:rounded-lg p-4">
+            <div class="w-full lg:w-96 m-auto">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                  <div class="mb-4">
+                    <%= f.label :password, 'Traženje', class: 'text-sm leading-5 font-medium mb-4' %>
+                    <%= f.password_field :password, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none mt-1', placeholder: 'Unesite ime vrtića' %>
+                  </div>
+  
+                  <div class="mb-6">
+                    <%= f.submit "Dalje", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= %>
+                  </div>
+              <% end %>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<div class="lg:h-full flex">
+  <div class="mt-10 lg:mt-auto container m-auto">
+    <div class="lg:flex flex-row justify-between ">
+      <div class="lg:w-1/2 p-5">
+        <h1 class="mb-4">
+          <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
+            <span>Samo još jedan korak!</span>
+          </div>
+        </h1>
+        <p class="sm:text-xl leading-7 font-normal mb-5">
+          Proces popunjavanja formi na websajtu sastoji se od dva dela, unosa vrtića i traženja vrtića.
+        </p>
+        <ul class="list-decimal ml-5">
+          <li class="text-green-400">
+            Unos vrtića u kojem nudite mesto.
+          </li>
+          <li class="text-green-400">
+            Traženje vrtića u kojem tražite mesto.
+          </li>
+          <li class="text-indigo-400">
+            Definisanje starosne grupe.
+          </li>
+        </ul> 
+      </div>
+      <div class="m-auto">
+        <div class="w-full m-auto text-black sm:p-5 lg:py-3 xl:py-5">
+          <div class="flex flex-col items-center bg-white sm:rounded-lg p-4">
+            <div class="box-border w-full lg:w-96 m-auto">
+              
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                <label for="group" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Starosna grupa</label>
+                  <select id="group" class="mb-4 lg:w-96 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Starosna grupa</option>
+                    <option value="">Mlađa jaslena</option>
+                    <option value="">Starija jaslena</option>
+                    <option value="">Mlađa vaspitna</option>
+                    <option value="">Starija vaspitna</option>
+                  </select>
+  
+                  <div class="mb-6">
+                    <%= f.submit "Kraj", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= %>
+                  </div>
+              <% end %>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
