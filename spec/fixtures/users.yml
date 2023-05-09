@@ -1,0 +1,12 @@
+# https://github.com/trkin/rails_minitest/blob/main/test/fixtures/users.yml
+DEFAULTS: &DEFAULTS
+  email: $LABEL@example.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= Time.zone.now %>
+
+user:
+  <<: *DEFAULTS
+
+unconfirmed:
+  <<: *DEFAULTS
+  confirmed_at:
