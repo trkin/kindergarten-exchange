@@ -8,17 +8,42 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body class="bg-gray-800 text-white h-screen w-full flex-col"> 
     <nav class="container fixed left-1/2 transform -translate-x-1/2 t-0 px-2 lg:px-5 py-2">
       <%= render partial: 'layouts/nav' %>
     </nav>
-
-    
+  
     <p data-test="notice" class="notice"><%= notice %></p>
     <p data-test="alert" class="alert"><%= alert %></p>
 
     <%= yield %>
+
+    <footer class="flex flex-col items-center text-black text-base font-medium text-center p-[5vw] selection:bg-blue-500 selection:text-white">
+      <div class="flex flex-row justify-center mb-4 gap-4">
+        <a href="#">
+          <i class="fa fa-envelope hover:text-blue-500" style="font-size:3rem;"></i>
+        </a>
+        <a href="#">
+          <i class="fa fa-facebook hover:text-blue-500" style="font-size:3rem;"></i>
+        </a>
+        <a href="#">
+          <i class="fa fa-twitter hover:text-blue-500" style="font-size:3rem;"></i>
+        </a>
+        <a href="#">
+          <i class="fa fa-github hover:text-blue-500" style="font-size:3rem;"></i>
+        </a>
+      </div>
+      <p class="text-xs">
+        Copyright © Kindergarten Exchange 2023
+      </p>
+    </footer>
   </body>
 </html>

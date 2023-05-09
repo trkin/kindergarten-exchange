@@ -3,6 +3,15 @@
 This is open source application used to help parents to communicate and organize
 when they want to switch places in kindergartens.
 
+There are currently no vacancies, so when they want to move, they get an answer from the authorities: all places are filled.
+
+They currently use FB groups and advertisements on kindergarten doors, which is not effective
+![fb](https://user-images.githubusercontent.com/1426092/228525249-89967f4a-e126-4943-9ab9-5494fb7b1f40.png)
+
+Using this app, they can easily log in using their mobile phone or email, select their current location and wishes, and wait for a notification.
+
+## App
+
 Repository url:
 
 https://github.com/trkin/kindergarten-exchange
@@ -46,6 +55,15 @@ bin/dev
 ```
 
 and you should be able to open site on http://localhost:3000/
+
+# Model
+
+Basic models are:
+* `User` email of registered user
+* `Location` name and location for kindergarten
+* `Group` age groups for each location
+* `Wish` is Group User relation, ie current location
+* `WishGroup` is Wish Group relation, ie target location
 
 # Database
 

@@ -1,0 +1,13 @@
+DEFAULTS: &DEFAULTS
+  name: $LABEL
+  address: $LABEL address
+  latitude: 45.2384337
+  longitude: 19.84093123
+
+location:
+  <<: *DEFAULTS
+
+another_location:
+  <<: *DEFAULTS
+  latitude: 45.2404356
+  longitude: 19.8277656
