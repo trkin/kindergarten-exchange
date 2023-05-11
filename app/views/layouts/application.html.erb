@@ -16,17 +16,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
-  <body class="bg-gray-800 text-white h-screen w-full flex-col"> 
-    <nav class="container fixed left-1/2 transform -translate-x-1/2 t-0 px-2 lg:px-5 py-2">
-      <%= render partial: 'layouts/nav' %>
-    </nav>
+  <body class="bg-gray-800 text-white min-h-screen w-full flex flex-col"> 
+      <nav class="container m-auto px-2 lg:px-5 py-2">
+        <%= render partial: 'layouts/nav' %>
+      </nav>
   
-    <p data-test="notice" class="notice"><%= notice %></p>
-    <p data-test="alert" class="alert"><%= alert %></p>
-
-    <%= yield %>
-
-    <footer class="flex flex-col items-center text-black text-base font-medium text-center p-[5vw] selection:bg-blue-500 selection:text-white">
+      <p data-test="notice" class="notice m-auto"><%= notice %></p>
+      <p data-test="alert" class="alert m-auto"><%= alert %></p>
+      <div class="flex-grow flex-col items-center justify-center">
+        <%= yield %>
+      </div>
+    <footer class="flex flex-col items-center text-black text-base font-medium text-center p-4 selection:bg-blue-500 selection:text-white">
       <div class="flex flex-row justify-center mb-4 gap-4">
         <a href="#">
           <i class="fa fa-envelope hover:text-blue-500" style="font-size:3rem;"></i>
