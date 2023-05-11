@@ -70,3 +70,7 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem 'activemodel', '7.0.4.2'
+
+gem 'letter_opener', group: :development
