@@ -1,23 +1,24 @@
 <div class="px-[20vw] py-8 flex flex-col items-center gap-4 selection:bg-blue-500 selection:text-white">
   <h2 class="text-blue-400 text-2xl sm:text-4xl font-semibold mb-8">Log in</h2>
 
-  <% if Rails.env.development? %>
-    <small>
-      Only on development
-      <dl>
-        <dt>users:</dt>
-        <dd>
-          <% User.order(:created_at).limit(5).each do |user| %>
-            <%= link_to user.email, sign_in_development_path(user) %>
-          <% end %>
-        </dd>
-      </dl>
-    </small>
-  <% end %>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="bg-blue-400 text-white rounded-md p-8 shadow-md">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-white text-blue-500 rounded-md p-4 w-full text-sm" %>
+<% if Rails.env.development? %>
+  <%# <small>
+    Only on development
+    <dl>
+      <dt>users:</dt>
+      <dd> %>
+        <%# User.order(:created_at).limit(5).each do |user| %>
+          <%#= link_to user.email, sign_in_development_path(user) %>
+        <%# end %>
+      <%# </dd>
+    </dl>
+  </small> %>
+<% end %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
 
       <div class="my-8">
         <%= f.label :password %><br />
