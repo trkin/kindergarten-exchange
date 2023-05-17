@@ -23,8 +23,15 @@ class PagesController < ApplicationController
       ContactMailer.contact_email(@contact_form).deliver_now
       redirect_to contact_path, notice: "Your message was sent successfully."
     else
-      flash.now[:alert] = "Please fill in all required fields."
-      redirect_to contact_path
+      redirect_to contact_path, notice: "Please fill in all required fields."
+    end
+  end
+
+  def kindergarten
+    @kindergartens = Kindergarten.order(:name)
+    respond_to do |format|
+      format.html
+      format.json { render json: @kindergartens }
     end
   end
 

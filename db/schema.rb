@@ -10,23 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_28_093045) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_122129) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
-  end
 
   create_table "groups", force: :cascade do |t|
     t.bigint "location_id", null: false
@@ -37,13 +23,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_093045) do
     t.index ["location_id"], name: "index_groups_on_location_id"
   end
 
+  create_table "kindergartens", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.string "lat"
     t.string "latitude"
     t.string "longitude"
-    t.string "url_for_map"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
