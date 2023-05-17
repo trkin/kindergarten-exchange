@@ -71,4 +71,4 @@ end
 
 gem "devise", "~> 4.9"
 
-gem 'geocoder'
+gem "geocoder"

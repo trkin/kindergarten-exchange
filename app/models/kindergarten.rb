@@ -1,3 +1,3 @@
 class Kindergarten < ApplicationRecord
-    geocoded_by :address
+  geocoded_by :address
 end
