@@ -1,22 +1,15 @@
-<div class="lg:h-full flex">
+<div class="lg:h-full flex w-full">
   <div class="mt-10 lg:mt-auto container m-auto">
-    <div class="lg:flex flex-row justify-between ">
-      <div class="lg:w-1/2 p-5">
-        <h1 class="mb-4">
-          <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
-            <span>Razmeni mesto</span><br>
-            <span class="text-indigo-400">za vrtić online</span>
-          </div>
-        </h1>
-        <p class="sm:text-xl leading-7 font-normal">
-          Ova platforma omogućava roditeljima u Novom Sadu da se povežu i razmene mesta u vrtiću preko online platforme. To znači da roditelji koji traže mesto u vrtiću mogu pronaći druge roditelje koji su zainteresovani za razmenu mesta sa svojom decom.
-          Klikom na Prijavi se, prihvatate uslove korišćenja aplikacije.
-        </p>
-      </div>
-      <div class="m-auto">
+    <div class="lg:flex flex-column justify-between ">
+      <div class="m-auto lg:mt-10">
+        <div class="w-fit flex m-auto p-3 lg:p-5">
+          <h1 class="flex m-auto text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
+            Kontaktiraj nas!
+          </h1>
+        </div>
         <div class="w-full m-auto text-black sm:p-5 lg:py-3 xl:py-5">
           <div class="flex flex-col items-center bg-white sm:rounded-lg p-4">
-            <div class="w-full lg:w-96 m-auto">
+            <div class="w-full m-auto">
                 <%= form_for @contact_form, url:contact_path do |f| %>
                     <p data-test="notice" class="notice"><%= notice %></p>
                     <p data-test="alert" class="alert"><%= alert %></p>
@@ -24,15 +17,13 @@
                         <%= f.label :name, 'Ime', class: 'text-sm leading-5 font-medium' %>
                         <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'w-full h-8 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none' %>
                     </div>
-                    <% unless current_user.present? %>
-                      <div class="mb-4">
-                          <%= f.label :email, 'Email', class: 'text-sm leading-5 font-medium' %>
-                          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-full h-8 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none' %>
-                      </div>
-                    <% end %>
+                    <div class="mb-4">
+                        <%= f.label :email, 'Email', class: 'text-sm leading-5 font-medium' %>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-full h-8 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none' %>
+                    </div>
                     <div class="mb-4">
                         <%= f.label :question, 'Pitanje', class: 'text-sm leading-5 font-medium' %>
-                        <%= f.text_area :question, autofocus: true, autocomplete: "question", class: 'w-full h-72 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none' %>
+                        <%= f.text_area :question, autofocus: true, autocomplete: "question", class: 'w-full h-48 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none' %>
                     </div>
                     <div class="mb-6">
                         <%= f.submit "Pošalji", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>

@@ -99,6 +99,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
     erubi (1.12.0)
+    geocoder (1.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -273,6 +274,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  geocoder
   jsbundling-rails
   pg (~> 1.1)
   propshaft

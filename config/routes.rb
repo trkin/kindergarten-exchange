@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
 
   root "pages#index"
+  get "kindergarten", to: "pages#kindergarten"
   get "contact", to: "pages#contact_show"
   post "contact", to: "pages#contact_create", as: "contact_submit"
 end

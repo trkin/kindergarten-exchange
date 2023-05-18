@@ -1,7 +1,39 @@
-<div class="lg:h-full flex">
+<div class="px-[20vw] py-8 flex flex-col items-center gap-4 selection:bg-blue-500 selection:text-white">
+  <h2 class="text-blue-400 text-2xl sm:text-4xl font-semibold mb-8">Sign up</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="bg-blue-400 text-white rounded-md p-8 shadow-md">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-white text-blue-500 rounded-md p-4 max-w-[50vw] md:max-w-[30vw] text-sm" %>
+
+      <div class="my-8">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "bg-white text-blue-500 rounded-md p-4 max-w-[50vw] md:max-w-[30vw] text-sm" %>
+      </div>
+
+      <div class="my-8">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "bg-white text-blue-500 rounded-md p-4 max-w-[50vw] md:max-w-[30vw] text-sm" %>
+      </div>
+
+      <div class="text-white bg-gray-600 hover:text-blue-400 hover:bg-white rounded-md px-5 py-3 cursor-pointer text-center">
+        <%= f.submit "Sign up", class: "max-w-[50vw] md:max-w-[30vw]" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render "devise/shared/links" %>
+
+
+<div class="lg:h-full flex w-full">
   <div class="mt-10 lg:mt-auto container m-auto">
     <div class="lg:flex flex-row justify-between ">
-      <div class="lg:w-1/2 p-5">
+      <div class="lg:w-1/2 p-3 lg:p-5">
         <h1 class="mb-4">
           <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
             <span>Razmeni mesto</span><br>
@@ -52,10 +84,10 @@
   </div>
 </div>
 
-<div class="lg:h-full flex">
+<div class="lg:h-full flex w-full">
   <div class="mt-10 lg:mt-auto container m-auto">
     <div class="lg:flex flex-row justify-between ">
-      <div class="lg:w-1/2 p-5">
+      <div class="lg:w-1/2 p-3 lg:p-5">
         <h1 class="mb-4">
           <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
             <span>Razmeni mesto</span><br>
@@ -95,10 +127,10 @@
 </div>
 
 
-<div class="lg:h-full flex">
+<div class="lg:h-full flex w-full">
   <div class="mt-10 lg:mt-auto container m-auto">
     <div class="lg:flex flex-row justify-between ">
-      <div class="lg:w-1/2 p-5">
+      <div class="lg:w-1/2 p-3 lg:p-5">
         <h1 class="mb-4">
           <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
             <span>Dobrodošli!</span>
@@ -146,10 +178,10 @@
 </div>
 
 
-<div class="lg:h-full flex">
+<div class="lg:h-full flex w-full">
   <div class="mt-10 lg:mt-auto container m-auto">
     <div class="lg:flex flex-row justify-between ">
-      <div class="lg:w-1/2 p-5">
+      <div class="lg:w-1/2 p-3 lg:p-5">
         <h1 class="mb-4">
           <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
             <span>Drugi korak!</span>
@@ -196,10 +228,10 @@
   </div>
 </div>
 
-<div class="lg:h-full flex">
+<div class="lg:h-full flex w-full">
   <div class="mt-10 lg:mt-auto container m-auto">
     <div class="lg:flex flex-row justify-between ">
-      <div class="lg:w-1/2 p-5">
+      <div class="lg:w-1/2 p-3 lg:p-5">
         <h1 class="mb-4">
           <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
             <span>Samo još jedan korak!</span>
@@ -249,4 +281,3 @@
     </div>
   </div>
 </div>
-  

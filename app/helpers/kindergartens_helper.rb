@@ -1,0 +1,2 @@
+module KindergartensHelper
+end
