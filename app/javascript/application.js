@@ -6,6 +6,11 @@ import "./controllers"
   document.addEventListener("DOMContentLoaded", function() {
     initMap();
   });
+
+  document.addEventListener("turbo:load", function() {
+    initMap();
+  });
+
   function initMap(){
     var map = new google.maps.Map(document.getElementById('map'), {
       center: { lat: 45.2657395, lng: 19.8291528},
@@ -71,4 +76,5 @@ import "./controllers"
           });
         });
       });
+
   }
