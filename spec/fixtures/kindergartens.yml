@@ -4,10 +4,10 @@ DEFAULTS: &DEFAULTS
   latitude: 45.2384337
   longitude: 19.84093123
 
-location:
+kindergarten:
   <<: *DEFAULTS
 
-another_location:
+another_kindergarten:
   <<: *DEFAULTS
   latitude: 45.2404356
   longitude: 19.8277656

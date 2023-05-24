@@ -1,3 +1,4 @@
 wish:
-  group: group
+  kindergarten: kindergarten
   user: user
+  group: <%= Wish.groups["age1"] %>

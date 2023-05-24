@@ -42,10 +42,9 @@ and you should be able to open site on http://localhost:3000/
 
 Basic models are:
 * `User` email of registered user
-* `Location` name and location for kindergarten
-* `Group` age groups for each location
-* `Wish` is Group User relation, ie current location
-* `WishGroup` is Wish Group relation, ie target location
+* `Kindergarten` name and location for kindergarten
+* `Wish` is Kindergarten User relation, ie current location with group
+* `WishKindergarten` is Wish Kindergarten relation, ie target kindergarten
 
 # Database
 
