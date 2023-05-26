@@ -1,0 +1,69 @@
+<div class="lg:h-full flex w-full">
+  <div class="mt-10 lg:mt-auto container m-auto">
+    <div class="lg:flex flex-row justify-between ">
+      <div class="flex-col lg:w-1/2 p-3 m-auto lg:p-5">
+        <h1 class="mb-4">
+          <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
+            <span>Drugi korak!</span>
+          </div>
+        </h1>
+        <p class="sm:text-xl leading-7 font-normal mb-5">
+          Proces popunjavanja formi na websajtu sastoji se od dva dela:
+        </p>
+        <ul class="list-decimal ml-5">
+          <li class="text-green-400">
+            Definisanja starosne grupe i unosa vrtića u kojem nudite mesto.
+          </li>
+          <li class="text-indigo-400">
+            Traženje vrtića u kojem tražite mesto.
+          </li>
+        </ul> 
+      </div>
+      <div class="w-full lg:w-1/2 m-auto">
+        <div class="w-full m-auto text-black sm:p-5 lg:py-3 xl:py-5">
+          <div class="flex flex-col items-center bg-white sm:rounded-lg p-4">
+            <div class="w-full m-auto">
+              <label for="group" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tražnja</label>
+                <div id="map"></div>
+                <% if @wish_kindergartens.present? %>
+                <div class="pt-2">
+                  <% @wish_kindergartens.each do |wish_kindergarten| %>
+                    <div class="bg-indigo-100 mb-2 w-full h-8 pb-8 pt-3 rounded-md gap-4 text-sm leading-5 font-medium focus:outline-none">
+                      <!-- Display wish_kindergarten details -->
+                      <div class="flex flex-row px-2 justify-between">
+                        <%= wish_kindergarten.kindergarten.name %>
+                        <p>Postoji željena rotacija.</p>
+                       
+                      </div>
+                      <!-- Add delete button -->
+                    </div>
+                  <% end %>
+                </div>
+                  
+                <% end %>
+                <%= form_for @wish_kindergarten, url:wish_wish_kindergartens_path, method: :post, html: { class: 'w-full' } do |f| %>
+                  <%= hidden_field_tag :wish_id, @wish_id %>
+                  <div class="flex flex-col lg:flex-row gap-2">
+                    <%= f.collection_select :kindergarten_id, Kindergarten.all, :id, :name, { prompt: 'Izaberi vrtić' }, { id: 'selectField', class: 'select-input mt-4 mb-4 w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }%>
+                  </div> 
+                  <div class="mb-6">
+                    <%= f.submit "Pošalji zahtev", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 hover:bg-blue-500 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= %>
+                  </div>
+                <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  #map {
+    height: 300px;
+  }
+</style>
+

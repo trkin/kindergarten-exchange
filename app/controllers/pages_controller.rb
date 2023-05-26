@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
-  def index
-  end
+  before_action :redirect_visitors
 
   def sign_in_development
     render plain: "only_development" and return unless Rails.env.development?
@@ -27,17 +26,25 @@ class PagesController < ApplicationController
     end
   end
 
-  def kindergarten
-    @kindergartens = Kindergarten.order(:name)
-    respond_to do |format|
-      format.html
-      format.json { render json: @kindergartens }
-    end
-  end
-
   private
 
   def contact_params
     params.require(:contact_form).permit(:name, :email, :question)
+  end
+
+  def wish_params
+    params.require(:wish).permit(:group, :kindergarten_id).tap do |wish_params|
+      wish_params[:user_id] = current_user&.id
+
+      wish_params[:group] = Wish.groups.keys[wish_params[:group].to_i] if wish_params[:group].present?
+    end
+  end
+
+  def wish_kindergarten_params
+    params.require(:wish_kindergarten).permit(:wish_id, :kindergarten_id)
+  end
+
+  def redirect_visitors
+    redirect_to wishes_path unless user_signed_in?
   end
 end
