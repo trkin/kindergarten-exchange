@@ -1,0 +1,60 @@
+<div class="lg:h-full flex w-full">
+  <div class="mt-10 lg:mt-auto container m-auto">
+    <div class="lg:flex flex-row justify-between ">
+      <div class="flex-col lg:w-1/2 p-3 m-auto lg:p-5">
+        <h1 class="mb-4">
+          <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
+            <span>Registracija!</span>
+          </div>
+        </h1>
+        <p class="sm:text-xl leading-7 font-normal mb-5">
+          Registrujte se kako bismo Vas obavestili o poklapanjima za izabrane vrtiće. <br>
+          U slučaju da trenutno nema poklapanja za izabrane vrtiće, registracijom ostavljate svoj mejl putem kojeg ćemo Vas obavestiti o poklapanjima čim do njih dođe.  
+        </p>
+        <p class="leading-7 font-normal mt-5">
+          Ukoliko već imate registrovan nalog kliknite na dugme Prijavi se.
+        </p>
+      </div>
+      <div class="m-auto">
+        <div class="w-full m-auto text-black sm:p-5 lg:py-3 xl:py-5">
+          <div class="flex flex-col items-center bg-white sm:rounded-lg p-4">
+            <div class="w-full lg:w-96 m-auto">
+              <%= form_for @user, url: registration_path(@wish), method: :post do |f| %>
+                  <% if @user.errors.any? %>
+                    <div class="alert alert-danger">
+                      <ul>
+                        <% @user.errors.each do |attribute, message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="mb-4">
+                    <%= f.label :email, 'Registruj se', class: 'text-sm leading-5 font-medium' %>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-full h-8 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none', placeholder: 'Email'  %>
+                  </div>
+          
+                  <div class="mb-4">
+                    <%= f.password_field :password, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none', placeholder: 'Unesi lozinku' %>
+                  </div>
+
+                  <div class="mb-4">
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none', placeholder: 'Potvrdi lozinku' %>
+                  </div>
+          
+                  <div class="mb-6">
+                    <%= f.submit "Registruj se", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= %>
+                  </div>
+          
+                  <hr class=" w-full border border-gray-300">
+                  <p class="pt-6 text-center text-xs leading-5 font-normal text-gray-500">Klikom na Registruj se, prihvatate <span class="text-gray-700">uslove korišćenja</span> aplikacije</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
