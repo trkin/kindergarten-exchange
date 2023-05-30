@@ -9,6 +9,10 @@ class PagesController < ApplicationController
     redirect_to params[:redirect_to] || root_path
   end
 
+  def index
+    @wishes = current_user.wishes.includes(:kindergarten, :wish_kindergartens)
+  end
+
   def contact_show
     @contact_form = ContactForm.new(
       email: current_user&.email
@@ -30,18 +34,6 @@ class PagesController < ApplicationController
 
   def contact_params
     params.require(:contact_form).permit(:name, :email, :question)
-  end
-
-  def wish_params
-    params.require(:wish).permit(:group, :kindergarten_id).tap do |wish_params|
-      wish_params[:user_id] = current_user&.id
-
-      wish_params[:group] = Wish.groups.keys[wish_params[:group].to_i] if wish_params[:group].present?
-    end
-  end
-
-  def wish_kindergarten_params
-    params.require(:wish_kindergarten).permit(:wish_id, :kindergarten_id)
   end
 
   def redirect_visitors

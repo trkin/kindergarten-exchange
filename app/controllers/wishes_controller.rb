@@ -3,6 +3,7 @@ class WishesController < ApplicationController
 
   # GET /wishes or /wishes.json
   def index
+    @kindergartens = Kindergarten.all
     @wish = Wish.new
   end
 
@@ -21,17 +22,19 @@ class WishesController < ApplicationController
 
   # POST /wishes or /wishes.json
   def create
+    @kindergartens = Kindergarten.order(:name)
     @wish = Wish.new(wish_params)
     @wish.user_id = current_user&.id
 
     respond_to do |format|
       if @wish.save
-        format.html { redirect_to wish_wish_kindergartens_path(@wish), notice: "Wish was successfully created." }
-        format.json { render :show, status: :created, location: @wish }
+        format.html { redirect_to wish_wish_kindergartens_path(@wish) }
+        format.json { render :index, status: :created, location: @wish }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @wish.errors, status: :unprocessable_entity }
-        return
+        flash.now[:alert] = @wish.errors.full_messages.join(", ")
+        render :index, status: :unprocessable_entity
+        # format.json { render json: @wish.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -51,12 +54,11 @@ class WishesController < ApplicationController
 
   # DELETE /wishes/1 or /wishes/1.json
   def destroy
-    @wish.destroy
+    @wish = Wish.find(params[:id])
+    @wish.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Wish was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    flash[:notice] = "Ponuda je uspešno obrisana."
+    redirect_to root_path
   end
 
   private
@@ -71,9 +73,6 @@ class WishesController < ApplicationController
   def wish_params
     params.require(:wish).permit(:group, :kindergarten_id).tap do |wish_params|
       wish_params[:user_id] = current_user&.id
-      wish_params[:group] = Wish.groups.keys[wish_params[:group].to_i] if wish_params[:group].present?
     end
   end
-
-  private
 end

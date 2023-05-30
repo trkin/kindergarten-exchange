@@ -1,51 +1,134 @@
+<!-- The wrapper of tabs -->
+<div class="container w-full drop-shadow-lg">
+  <!-- Tab Buttons -->
+  <div id="tab-buttons" class="flex bg-blue-600">
+      <a href="javascript:void(0)" onclick="changeTab(event, 0)"
+          class="inline-block px-8 py-3 bg-white text-blue-600">Aktivne ponude</a>
+      <a href="javascript:void(0)" onclick="changeTab(event, 1)" class="inline-block px-8 py-3 text-white">Realizovane ponude</a>
+      <!-- <a href="javascript:void(0)" onclick="changeTab(event, 2)" class="inline-block px-8 py-3 text-white">Tab
+          3</a> -->
+  </div>
 
-<div class="lg:h-full flex w-full">
-  <div class="mt-10 lg:mt-auto container m-auto">
-    <div class="lg:flex flex-row justify-between ">
-      <div class="flex-col lg:w-1/2 p-3 m-auto lg:p-5">
-        <h1 class="mb-4">
-          <div class="text-5xl sm:text-6xl leading-none font-extrabold tracking-tight">
-            <span>Prvi korak!</span>
-          </div>
-        </h1>
-        <p class="sm:text-xl leading-7 font-normal mb-5">
-          Proces popunjavanja formi na websajtu sastoji se od dva dela:
-        </p>
-        <ul class="list-decimal ml-5">
-          <li class="text-indigo-400">
-            Definisanja starosne grupe i unosa vrtića u kojem nudite mesto.
-          </li>
-          <li >
-            Traženje vrtića u kojem tražite mesto.
-          </li>
-        </ul> 
-      </div>
-      <div class="w-full lg:w-1/2 m-auto">
-        <div class="w-full m-auto text-black sm:p-5 lg:py-3 xl:py-5">
-          <div class="flex flex-col items-center bg-white sm:rounded-lg p-4">
-            <div class="w-full m-auto">
-              <label for="group" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tražnja</label>
-                <div id="map"></div>
-                  <%= form_for @wish, url:create_wish_path, method: :post, html: { class: 'w-full' } do |f| %>
-                    <div class="flex flex-col lg:flex-row gap-2">
-                      <%= f.collection_select :kindergarten_id, Kindergarten.all, :id, :name, { prompt: 'Izaberi vrtić' }, { id: 'selectField', class: 'select-input mt-4 mb-4 lg:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }%>
-                      <%= f.select :group, options_for_select(Wish.groups.values.map(&:humanize)),  { prompt: 'Izaberi grupu' }, { id: 'selectField', class: 'mt-4 mb-4 lg:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' } %>
+  <!-- Tab Panels -->
+  <div id="tab-panels" class="bg-white px-8 py-6">
+    <div>
+      <div class="flex flex-col p-4 grid-col-1 md:grid-col-2 xl:grid-col-4 border-dashed border-gray-300 border-2 rounded-md gap-4 mb-2 text-sm leading-5 font-medium focus:outline-none">
+        <label for="group" class="block mb-2 mt-4 font-medium text-gray-900 dark:text-white">Vaše aktivne zahtevi:</label>
+        <div>
+          <% if @wishes.empty? %>
+          <p class="mt-2 text-green-400">Nemate aktivnih ponuda.</p>
+          <% else %>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 px-2 justify-between py-2 text-black">
+            <% @wishes.each do |wish| %>
+              <!-- Display wish_kindergarten details -->
+              <article class="bg-blue-100 flex flex-col h-96">
+                <div class="h-3/6 p-2">
+                  
+                </div>
+                <div class="flex flex-col px-2 gap-2 py-2 flex-grow-1 h-3/6 justify-between">
+                  <div>
+                    <div>
+                      <p>Grupa: <%= Wish.groups[wish.group] %></p>
                     </div>
-                    
-                    <div class="mb-6">
-                      <%= f.submit "Dalje", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 hover:bg-blue-500 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
-                      <%= %>
+                    <div>
+                        <h2>Ponuda: <%= wish.kindergarten.name %></h2>
+                    </div> 
+                    <div>
+                      <h2>Tražnja: <%= wish.wish_kindergartens.map { |wk| wk.kindergarten.name }.join(", ") %></h2>
+                    </div>
                   </div>
-                <% end %>
+                  <div class="p-2 flex ml-auto mr-0 gap-2">
+                    <%= button_to wish_path(wish), method: :delete, data: { confirm: "Are you sure you want to delete this wish_kindergarten?" }, class: "flex m-auto bg-blue-600 hover:bg-blue-500 text-white font-bold p-2 rounded" do %>
+                      <i class="fa fa-edit" style="font-size:1.5rem;"></i> 
+                    <% end %>
+                    <%= button_to wish_path(wish), method: :delete, data: { confirm: "Are you sure you want to delete this wish_kindergarten?" }, class: "flex m-auto bg-red-600 hover:bg-red-500 text-white font-bold p-2 rounded" do %>
+                      <i class="fa fa-trash" style="font-size:1.5rem;"></i> 
+                    <% end %> 
+                  </div> 
+                </div>
+              </article>
+            <% end %>
             </div> 
-          </div> 
+          <% end %>
+        </div>
+        <div class="w-full lg:w-fit h-full mr-0 ml-auto">
+          <%= button_to "Dodaj novu ponudu", wishes_path, method: :get, class: "w-full h-8 pb-8 pt-3 m-2 bg-blue-600 hover:bg-blue-500 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none" %>    
+        </div> 
+      </div>
+    </div>
+
+    <div class="hidden">
+      <div class="flex flex-col p-4 grid-col-1 md:grid-col-2 xl:grid-col-4 border-dashed border-gray-300 border-2 rounded-md gap-4 mb-2 text-sm leading-5 font-medium focus:outline-none">
+        <label for="group" class="block mb-2 mt-4 font-medium text-gray-900 dark:text-white">Vaše realizovane ponude:</label>
+        <div>
+          <% if @wishes.empty? %>
+          <p class="mt-2 text-green-400">Nemate realizovanih ponuda.</p>
+          <% else %>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 px-2 justify-between py-2 text-black">
+            <% @wishes.each do |wish| %>
+                <!-- Display wish_kindergarten details -->
+                <article class="bg-blue-100 flex flex-col h-96">
+                  <div class="h-3/6 p-2">
+
+                  </div>
+                  <div class="flex flex-col px-2 gap-2 py-2 flex-grow-1 h-3/6 justify-between">
+                    <div>
+                      <div>
+                        <p>Grupa: <%= Wish.groups[wish.group] %></p>
+                      </div>
+                      <div>
+                          <h2>Ponuda: <%= wish.kindergarten.name %></h2>
+                      </div> 
+                      <div>
+                        <h2>Tražnja: <%= wish.wish_kindergartens.map { |wk| wk.kindergarten.name }.join(", ") %></h2>
+                      </div>
+                    </div>
+                    <div class="p-2 flex ml-auto mr-0 gap-2">
+                      <%= button_to wish_path(wish), data: { confirm: "Are you sure you want to delete this wish_kindergarten?" }, class: "flex m-auto bg-blue-600 hover:bg-blue-500 text-white font-bold p-2 rounded" do %>
+                        <i class="fa fa-edit" style="font-size:1.5rem;"></i> 
+                      <% end %>
+                      <%= button_to wish_path(wish), method: :delete, data: { confirm: "Are you sure you want to delete this wish_kindergarten?" }, class: "flex m-auto bg-red-600 hover:bg-red-500 text-white font-bold p-2 rounded" do %>
+                        <i class="fa fa-trash" style="font-size:1.5rem;"></i> 
+                      <% end %>
+                    </div> 
+                  </div>
+                </article>
+            <% end %>
+            </div> 
+          <% end %>
         </div>
       </div>
+    </div>
+
+    <div class="hidden">
+        <h1 class="text-2xl text-purple-600">Tab 3 Content</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, doloremque.</p>
     </div>
   </div>
 </div>
 
+<script>
+  function changeTab(event, index) {
+      var tabButtons = document.getElementById('tab-buttons').children;
+      var tabPanels = document.getElementById('tab-panels').children;
 
+      // Remove the active utility classes from all tabs (bg-white, text-blue-600)
+      // And hide all tab content (with the "hidden" utility)
+      for (var i = 0; i < tabButtons.length; i++) {
+          tabButtons[i].classList.remove('text-blue-600');
+          tabButtons[i].classList.remove('bg-white');
+          tabButtons[i].classList.add('text-white');
+          tabPanels[i].classList.add('hidden');
+      }
+
+      // Add the active utility classes to the currently active tab (bg-white, text-blue-600)
+      // And show the current tab content (remove the "hidden" utility)
+      tabButtons[index].classList.remove('text-white');
+      tabButtons[index].classList.add('text-blue-600');
+      tabButtons[index].classList.add('bg-white');
+      tabPanels[index].classList.remove('hidden');
+  }
+</script>
 
 <style>
   #map {
