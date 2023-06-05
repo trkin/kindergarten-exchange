@@ -1,8 +1,14 @@
 class ContactMailer < ApplicationMailer
-  default from: Rails.application.credentials.mailer_sender
+  default from: -> { contact_form_email }
 
   def contact_email(contact_form)
     @contact_form = contact_form
-    mail(to: "example@gmail.com", subject: "New Contact Form Submission")
+    mail(to: "example@gmail.com", subject: "New contact form submission")
+  end
+
+  private
+
+  def contact_form_email
+    @contact_form.email if @contact_form.present?
   end
 end

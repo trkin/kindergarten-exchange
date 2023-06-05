@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
-  def index
-  end
+  before_action :redirect_visitors, except: [:contact_show, :contact_create]
 
   def sign_in_development
     render plain: "only_development" and return unless Rails.env.development?
@@ -8,6 +7,10 @@ class PagesController < ApplicationController
     user = User.find params[:id]
     sign_in :user, user, bypass: true
     redirect_to params[:redirect_to] || root_path
+  end
+
+  def index
+    @wishes = current_user.wishes.includes(:kindergarten, :wish_kindergartens)
   end
 
   def contact_show
@@ -27,17 +30,13 @@ class PagesController < ApplicationController
     end
   end
 
-  def kindergarten
-    @kindergartens = Kindergarten.order(:name)
-    respond_to do |format|
-      format.html
-      format.json { render json: @kindergartens }
-    end
-  end
-
   private
 
   def contact_params
     params.require(:contact_form).permit(:name, :email, :question)
+  end
+
+  def redirect_visitors
+    redirect_to wishes_path unless user_signed_in?
   end
 end
