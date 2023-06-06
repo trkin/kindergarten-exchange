@@ -2,7 +2,7 @@ on: [push]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       RAILS_ENV: test
       # those envs are used to configure db and connect from Rails
@@ -36,7 +36,7 @@ jobs:
     - uses: browser-actions/setup-chrome@v1 # https://github.com/marketplace/actions/setup-chrome
     - name: Install dependecies
       run: |
-        sudo apt-get -yqq install libpq-dev
+        # sudo apt-get -yqq install libpq-dev
         gem install bundler
         bundle install --jobs 4 --retry 3
         yarn install
