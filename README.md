@@ -46,7 +46,7 @@ yarn build --watch
 yarn build:css --watch
 ```
 
-and you should be able to open site on http://localhost:3000/
+and you should be able to open site on <http://localhost:3000/>
 
 # Model
 
