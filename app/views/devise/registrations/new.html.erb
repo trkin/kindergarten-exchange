@@ -1,35 +1,3 @@
-<div class="px-[20vw] py-8 flex flex-col items-center gap-4 selection:bg-blue-500 selection:text-white">
-  <h2 class="text-blue-400 text-2xl sm:text-4xl font-semibold mb-8">Sign up</h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="bg-blue-400 text-white rounded-md p-8 shadow-md">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-white text-blue-500 rounded-md p-4 max-w-[50vw] md:max-w-[30vw] text-sm" %>
-
-      <div class="my-8">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class: "bg-white text-blue-500 rounded-md p-4 max-w-[50vw] md:max-w-[30vw] text-sm" %>
-      </div>
-
-      <div class="my-8">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "bg-white text-blue-500 rounded-md p-4 max-w-[50vw] md:max-w-[30vw] text-sm" %>
-      </div>
-
-      <div class="text-white bg-gray-600 hover:text-blue-400 hover:bg-white rounded-md px-5 py-3 cursor-pointer text-center">
-        <%= f.submit "Sign up", class: "max-w-[50vw] md:max-w-[30vw]" %>
-      </div>
-    </div>
-  <% end %>
-</div>
-
-<%= render "devise/shared/links" %>
-
-
 <div class="lg:h-full flex w-full">
   <div class="mt-10 lg:mt-auto container m-auto">
     <div class="lg:flex flex-row justify-between ">
@@ -51,23 +19,21 @@
             <div class="w-full lg:w-96 m-auto">
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                 <%= render "devise/shared/error_messages", resource: resource %>
-                  <div class="mb-4">
-                    <%= f.label :email, 'Uloguj se', class: 'text-sm leading-5 font-medium' %>
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-full h-8 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none' %>
+                  <div class="mb-2">
+                    <%= f.label :email, 'Registracija', class: 'leading-5 font-medium' %>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-full h-8 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none', placeholder: 'Email' %>
                   </div>
-          
-                  <div class="mb-4 flex items-center">
-                    <hr class="border border-gray-300 w-full">
-                    <span class="mx-2 font-inter">ili</span>
-                    <hr class="border border-gray-300 w-full">
+
+                  <div class="my-2">
+                    <%= f.password_field :password, autocomplete: "new-password", class: "w-full h-8 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none", placeholder: 'Lozinka' %>
                   </div>
-          
-                  <div class="mb-4">
-                    <%= f.password_field :password, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none', placeholder: 'Broj telefona' %>
+
+                  <div class="mt-2 mb-4">
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full h-8 mt-1 py-5 px-4 border border-gray-300 rounded-md focus:outline-none", placeholder: 'Potvrdi lozinku' %>
                   </div>
           
                   <div class="mb-6">
-                    <%= f.submit "Prijavi se", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= f.submit "Registruj se", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 hover:bg-blue-500 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
                     <%= %>
                   </div>
           
@@ -107,12 +73,12 @@
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                 <%= render "devise/shared/error_messages", resource: resource %>
                   <div class="mb-4">
-                    <%= f.label :password, 'Verifikacija broja', class: 'text-sm leading-5 font-medium mb-4' %>
+                    <%= f.label :password, 'Verifikacija broja', class: 'leading-5 font-medium mb-4' %>
                     <%= f.password_field :password, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none mt-1', placeholder: 'Verifikacioni kod' %>
                   </div>
   
                   <div class="mb-6">
-                    <%= f.submit "Verifikuj nalog", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= f.submit "Verifikuj nalog", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 hover:bg-blue-500 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
                     <%= %>
                   </div>
               <% end %>
@@ -158,12 +124,12 @@
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                 <%= render "devise/shared/error_messages", resource: resource %>
                   <div class="mb-4">
-                    <%= f.label :password, 'Ponuda', class: 'text-sm leading-5 font-medium mb-4' %>
+                    <%= f.label :password, 'Ponuda', class: 'leading-5 font-medium mb-4' %>
                     <%= f.password_field :password, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none mt-1', placeholder: 'Unesite ime vrtića' %>
                   </div>
   
                   <div class="mb-6">
-                    <%= f.submit "Dalje", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= f.submit "Dalje", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 hover:bg-blue-500 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
                     <%= %>
                   </div>
               <% end %>
@@ -209,12 +175,12 @@
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                 <%= render "devise/shared/error_messages", resource: resource %>
                   <div class="mb-4">
-                    <%= f.label :password, 'Traženje', class: 'text-sm leading-5 font-medium mb-4' %>
+                    <%= f.label :password, 'Traženje', class: 'leading-5 font-medium mb-4' %>
                     <%= f.password_field :password, autocomplete: "new-password", class: 'w-full h-8 py-5 px-4 border border-gray-300 rounded-md focus:outline-none mt-1', placeholder: 'Unesite ime vrtića' %>
                   </div>
   
                   <div class="mb-6">
-                    <%= f.submit "Dalje", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= f.submit "Dalje", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 hover:bg-blue-500 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
                     <%= %>
                   </div>
               <% end %>
@@ -269,7 +235,7 @@
                   </select>
   
                   <div class="mb-6">
-                    <%= f.submit "Kraj", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
+                    <%= f.submit "Kraj", class: 'w-full h-8 pb-8 pt-3 bg-indigo-600 hover:bg-blue-500 border border-gray-300 rounded-md text-white text-sm leading-5 font-medium focus:outline-none' %>
                     <%= %>
                   </div>
               <% end %>
