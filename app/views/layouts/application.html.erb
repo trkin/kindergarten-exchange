@@ -17,17 +17,32 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
   </head>
 
-  <body class="bg-gray-800 text-white min-h-screen w-full flex flex-col"> 
-      <nav class="container m-auto px-2 lg:px-5 py-2">
+  <body class="text-white min-h-screen w-full flex flex-col">
+      <nav class="bg-gray-800 w-full m-auto px-2 lg:px-5 py-2">
         <%= render partial: 'layouts/nav' %>
       </nav>
-  
-      <p data-test="notice" class="notice m-auto"><%= notice %></p>
-      <p data-test="alert" class="alert m-auto"><%= alert %></p>
-      <div class="flex flex-grow flex-col items-center justify-center">
-        <%= yield %>
+      <% if current_page?(root_path) %>
+        <div class="bg-gray-200">
+          <p data-test="notice" class="notice m-auto text-center text-black"><%= notice %></p>
+          <p data-test="alert" class="alert m-auto text-center text-black"><%= alert %></p>
+        </div>
+      <% else %>
+        <div class="bg-gray-800">
+        <p data-test="notice" class="notice m-auto text-center"><%= notice %></p>
+        <p data-test="alert" class="alert m-auto text-center"><%= alert %></p>
       </div>
-    <footer class="flex flex-col items-center text-black text-base font-medium text-center p-4 selection:bg-blue-500 selection:text-white">
+      <% end %>
+
+      <% if current_page?(root_path) %>
+        <div class="bg-gray-200 flex flex-grow flex-col items-center justify-center">
+          <%= yield %>
+        </div>
+      <% else %>
+        <div class="bg-gray-800 flex flex-grow flex-col items-center justify-center">
+          <%= yield %>
+        </div>
+      <% end %>
+    <footer class="bg-gray-800 flex flex-col items-center text-black text-base font-medium text-center p-4 selection:bg-blue-500 selection:text-white">
       <div class="flex flex-row justify-center mb-4 gap-4">
         <a href="#">
           <i class="fa fa-envelope hover:text-blue-500" style="font-size:3rem;"></i>
