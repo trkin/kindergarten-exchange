@@ -25,8 +25,6 @@ It requires:
 
 # Development
 
-## DO NOT USE STANDARD RAILS S
-
 To run locally you should run yarn
 
 ```
@@ -35,7 +33,17 @@ cd kindergarten-exchange
 yarn
 bundle
 bin/setup
+```
+
+To start the server you can run single command
+```
 bin/dev
+```
+or you can run three commands (find them in Procfile)
+```
+bin/rails server
+yarn build --watch
+yarn build:css --watch
 ```
 
 and you should be able to open site on http://localhost:3000/
