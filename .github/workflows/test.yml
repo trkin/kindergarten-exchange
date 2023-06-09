@@ -8,7 +8,7 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       RAILS_ENV: test
       # those envs are used to configure db and connect from Rails
@@ -24,7 +24,7 @@ jobs:
           POSTGRES_DB: rails_db_test
           POSTGRES_USER: rails_db_user
           POSTGRES_PASSWORD: postgres
-        ports: ["5432:5432"]
+        ports: ["5433:5432"]
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
@@ -42,7 +42,7 @@ jobs:
     - uses: browser-actions/setup-chrome@v1 # https://github.com/marketplace/actions/setup-chrome
     - name: Install dependecies
       run: |
-        sudo apt-get -yqq install libpq-dev
+        # sudo apt-get -yqq install libpq-dev
         gem install bundler
         bundle install --jobs 4 --retry 3
         yarn install
